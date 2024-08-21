@@ -7,6 +7,7 @@ also uses ROM which was dumped by [plgDavid](https://www.youtube.com/@plgDavid) 
 
 huge thanks to them!
 
+Here's a demo running by reading CAN signals of the vehicle and playing back through device's speakers:
 [![demo video](https://img.youtube.com/vi/e0SVRuqicng/0.jpg)](https://www.youtube.com/shorts/e0SVRuqicng)
 
 
