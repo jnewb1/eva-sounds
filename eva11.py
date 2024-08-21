@@ -19,6 +19,6 @@ SOUNDS = [
 with open("cm73002", "rb") as f:
     dat = f.read()
     
-    # for the eva 11, the offset table is at the end! move it to the front to match
+    # for the eva 11, the offset table is at the end!
 
     header = dat[-32:]
