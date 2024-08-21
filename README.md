@@ -10,5 +10,6 @@ huge thanks to them!
 [![demo video](https://img.youtube.com/vi/e0SVRuqicng/0.jpg)](https://www.youtube.com/shorts/e0SVRuqicng)
 
 
-TODO:
-- EVA11 sounds?
+Notes:
+- for eva11, the offset table is at the end of the ROM, where as in eva24, it's in the front.
+- eva11 splits the messages up, so for example "is low" is a separate message from "fuel" and "washer_fluid". on eva24, they are combined into one message.
