@@ -1,0 +1,3 @@
+[submodule "ti_lpc"]
+	path = ti_lpc
+	url = https://github.com/jnewb1/ti_lpc.git
