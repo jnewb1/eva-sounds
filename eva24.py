@@ -33,3 +33,4 @@ SOUNDS = [
 
 with open("cm63002", "rb") as f:
     dat = f.read()
+    header = dat[:60]

@@ -21,4 +21,4 @@ with open("cm73002", "rb") as f:
     
     # for the eva 11, the offset table is at the end! move it to the front to match
 
-    dat = dat[-32:] + dat[:-32]
+    header = dat[-32:]

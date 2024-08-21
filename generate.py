@@ -2,13 +2,13 @@ import os
 import subprocess
 
 
-def read_offsets_from_pointers(sounds, dat):
-    sounds_offsets = {sound: int.from_bytes(dat[i*2:i*2+2], "little") for i, sound in enumerate(sounds)}
-    return {sound: (offset+32, (list(sounds_offsets.values())[i+1] - list(sounds_offsets.values())[i])) for i, (sound, offset) in enumerate(sounds_offsets.items()) if i < len(sounds_offsets) - 1}
+def read_offsets_from_pointers(sounds, header, dat_length):
+    sounds_offsets = {sound: int.from_bytes(header[i*2:i*2+2], "little") for i, sound in enumerate(sounds)}
+    return {sound: (offset, (list(sounds_offsets.values())[i+1] - list(sounds_offsets.values())[i]) if i < len(sounds_offsets) -1 else (dat_length - offset)) for i, (sound, offset) in enumerate(sounds_offsets.items())}
 
 
-def generate_sounds(sounds, dat, name):
-    sounds_offsets_and_sizes = read_offsets_from_pointers(sounds, dat)
+def generate_sounds(sounds, dat, header, name):
+    sounds_offsets_and_sizes = read_offsets_from_pointers(sounds, header, len(dat))
 
     print(sounds_offsets_and_sizes)
     
@@ -22,7 +22,7 @@ def generate_sounds(sounds, dat, name):
 
         with open(f"sounds_{name}/{'_'.join(sound.split())}.wav", "wb") as f:
             cmd = f"./ti_lpc_cmd mode=render chip=tms5110.txt strhex={hex_data}"
-            print(cmd)
+            print(f"{name}_{sound}: {cmd}")
             ret = subprocess.run(cmd.split(" "), stdout=subprocess.PIPE, stderr=subprocess.PIPE, cwd=TI_LPC_CMD_VER_DIR)
 
             if ret.returncode == 1 or ret.stderr:
@@ -36,5 +36,5 @@ def generate_sounds(sounds, dat, name):
 import eva11
 import eva24
 
-generate_sounds(eva11.SOUNDS, eva11.dat, "eva11")
-generate_sounds(eva24.SOUNDS, eva24.dat, "eva24")
+generate_sounds(eva11.SOUNDS, eva11.dat, eva11.header, "eva11")
+generate_sounds(eva24.SOUNDS, eva24.dat, eva24.header, "eva24")
