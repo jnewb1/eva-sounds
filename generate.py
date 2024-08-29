@@ -12,7 +12,7 @@ def generate_sounds(sounds, dat, header, name):
 
     print(sounds_offsets_and_sizes)
     
-    TI_LPC_CMD_VER_DIR = "../ti_lpc/cmd_line_vers"
+    TI_LPC_CMD_VER_DIR = "ti_lpc/cmd_line_vers"
 
     os.makedirs(f"sounds_{name}", exist_ok=True)
 

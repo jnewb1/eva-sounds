@@ -14,3 +14,9 @@ Here's a demo running by reading CAN signals of the vehicle and playing back thr
 Notes:
 - for eva11, the offset table is at the end of the ROM, where as in eva24, it's in the front.
 - eva11 splits the messages up, so for example "is low" is a separate message from "fuel" and "washer_fluid". on eva24, they are combined into one message.
+
+
+```bash
+# To generate all sounds
+./run.sh
+```
